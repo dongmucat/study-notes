@@ -69,3 +69,101 @@
 ##### 不足之处？Vue.set和Vue.delete来救
 
 > 我们在日常开发中，还可以通过数组的下标来操作数据，而这样的修改是无法被拦截器侦测到的，为了解决这一问题，`Vue`增加了两个全局API:`Vue.set`和`Vue.delete`
+
+### 虚拟DOM
+
+#### 前言
+
+##### 什么是虚拟DOM？
+
+所谓虚拟DOM，就是用一个js中的对象来描述一个DOM节点
+
+##### 为什么要有虚拟DOM？
+
+如果直接操作真实的DOM会非常耗时，因为一个真正的DOM是非常庞大的。我们可以利用计算时间来换取直接操作DOM所消耗的时间。即当数据发生变化时，可以比变化前后的虚拟DOM节点，通过`diff`算法来计算需要更新的地方
+
+#### VNode类
+
+> VNode类可以实例化出不同类型的虚拟DOM节点
+
+##### VNode类内置变量（参数）
+
+```javascript
+export default class VNode {
+  constructor (
+    tag?: string,//表示当前节点的标签名
+    data?: VNodeData,//VNodeData类型的数据
+    children?: ?Array<VNode>,//子节点数组
+    text?: string,//当前节点文本
+    elm?: Node,//当前节点对应的真实DOM
+    context?: Component,//当前组件节点对应的Vue实例
+    componentOptions?: VNodeComponentOptions,//当前组件的Option选项
+    asyncFactory?: Function
+  ) {
+    this.tag = tag                                /*当前节点的标签名*/
+    this.data = data        /*当前节点对应的对象，包含了具体的一些数据信息，是一个VNodeData类型，可以参考VNodeData类型中的数据信息*/
+    this.children = children  /*当前节点的子节点，是一个数组*/
+    this.text = text     /*当前节点的文本*/
+    this.elm = elm       /*当前虚拟节点对应的真实dom节点*/
+    this.ns = undefined            /*当前节点的名字空间*/
+    this.context = context          /*当前组件节点对应的Vue实例*/
+    this.fnContext = undefined       /*函数式组件对应的Vue实例*/
+    this.fnOptions = undefined
+    this.fnScopeId = undefined
+    this.key = data && data.key           /*节点的key属性，被当作节点的标志，用以优化*/
+    this.componentOptions = componentOptions   /*组件的option选项*/
+    this.componentInstance = undefined       /*当前节点对应的组件的实例*/
+    this.parent = undefined           /*当前节点的父节点*/
+    this.raw = false         /*简而言之就是是否为原生HTML或只是普通文本，innerHTML的时候为true，textContent的时候为false*/
+    this.isStatic = false         /*静态节点标志*/
+    this.isRootInsert = true      /*是否作为跟节点插入*/
+    this.isComment = false             /*是否为注释节点*/
+    this.isCloned = false           /*是否为克隆节点*/
+    this.isOnce = false                /*是否有v-once指令*/
+    this.asyncFactory = asyncFactory
+    this.asyncMeta = undefined
+    this.isAsyncPlaceholder = false
+  }
+
+  get child (): Component | void {
+    return this.componentInstance
+  }
+}
+```
+
+##### VNode能够描述的节点类型
+
+- 注释节点
+
+  - isComment：用于标识是否是注释节点
+  - text：注释信息
+
+- 文本节点
+
+  - text：文本信息
+
+- 克隆节点
+
+  - 复制一份已存在的节点，用于模板编译优化
+
+- 元素节点
+
+  > 更贴近真实的DOM元素，有`tag`，`class`属性等
+
+- 组件节点
+
+  > 相比于元素节点，有两个特殊的属性
+
+  - componentOptions :组件的`option`选项，如组件的`props`等
+  - componentInstance :当前组件节点对应的`Vue`实例
+
+- 函数式组件节点
+
+  > 相比于元素节点，有两个特殊属性
+
+  - fnContext:函数式组件对应的`Vue`实例
+  - fnOptions: 组件的`option`选项
+
+##### VNode类的作用
+
+其实`VNode`的作用是相当大的。我们在视图渲染之前，把写好的`template`模板先编译成`VNode`并缓存下来，等到数据发生变化页面需要重新渲染的时候，我们把数据发生变化后生成的`VNode`与前一次缓存下来的`VNode`进行对比，找出差异，然后有差异的`VNode`对应的真实`DOM`节点就是需要重新渲染的节点，最后根据有差异的`VNode`创建出真实的`DOM`节点再插入到视图中，最终完成一次视图更新。
