@@ -192,3 +192,11 @@
 #### 检查内存泄漏
 
 > performance 面板 和 memory 面板可以找到泄露的现象和位置
+
+### Common JS与ES6 Modules规范的区别
+
+- CommonJS模块是运行时加载，ES6 Modules是编译时输出接口
+- CommonJS输出是值的拷贝；ES6 Modules输出的是值的引用，被输出模块的内部的改变会影响引用的改变
+- CommonJs导入的模块路径可以是一个表达式，因为它使用的是`require()`方法；而ES6 Modules只能是字符串
+- CommonJS `this`指向当前模块，ES6 Modules `this`指向`undefined`
+- 且ES6 Modules中没有这些顶层变量：`arguments`、`require`、`module`、`exports`、`__filename`、`__dirname`
