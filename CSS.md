@@ -20,6 +20,26 @@
 - `box-sizeing`: `content-box`表示标准盒模型（默认值）
 - `box-sizeing`: `border-box`表示IE盒模型（怪异盒模型）
 
+### BFC
+
+> `BFC`是一个完全独立的空间（布局环境），让空间里的子元素不会影响到外面的布局。`BFC`可以解决高度塌陷，外边距重叠，清除浮动问题，`BFC`可以看做是一个`CSS`元素属性
+
+#### 触发BFC条件
+
+- overflow: hidden
+- display: inline-block
+- position: absolute
+- position: fixed
+- display: table-cell
+- display: flex
+
+#### BFC规则
+
+- `BFC`就是一个块级元素，块级元素会独自占用一行
+- `BFC`就是页面中的一个隔离的独立容器，容器里的标签不会影响到外部标签
+- 垂直方向的距离由`margin`决定， 属于同一个`BFC`的两个相邻的标签外边距会发生重叠
+- 计算`BFC`的高度时，浮动元素也参与计算
+
 ### 选择器
 
 - id选择器：权重为100
