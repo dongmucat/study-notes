@@ -200,3 +200,10 @@
 - CommonJs导入的模块路径可以是一个表达式，因为它使用的是`require()`方法；而ES6 Modules只能是字符串
 - CommonJS `this`指向当前模块，ES6 Modules `this`指向`undefined`
 - 且ES6 Modules中没有这些顶层变量：`arguments`、`require`、`module`、`exports`、`__filename`、`__dirname`
+
+### 内存泄漏
+
+- 意外的全局变量：由于使用了未声明的变量，而意外创建了一个全局变量而无法被回收
+- 被遗忘的计时器
+- 脱离DOM的引用： 获取一个 DOM 元素的引用，而后面这个元素被删除，由于一直保留了对这个元素的引用，所以它也无法被回收
+- 闭包：不合理的使用会导致某些变量一直留在内存中
