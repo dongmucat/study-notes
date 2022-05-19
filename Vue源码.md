@@ -206,3 +206,13 @@ export default class VNode {
 - 如果新的`vnode`没有子节点，而旧的`vnode`有子节点，则删除`el`的子节点
 - 如果新的`vnode`有子节点，而旧的`vnode`没有子节点，则添加`vnode`子节点真实化后添加到`el`
 - 如果两者都有子节点，则执行`updateChildren`函数进一步比较子节点
+
+##### updateChildren流程
+
+> 一层一层地递归比较
+
+- 将新的`vnode`的子节点和旧的`vnode`的子节点取出来
+- 新的`vnode`的子节点和旧的`vnode`的子节点各有两个头尾指针`StartIdx`和`endIdx`，也有说他们是(新前，新后，旧前，旧后)，他们之间有4种比较，如果当中两个匹配得上，则真实DOM的相应节点会移动到新`vnode`的位置
+- 如果上述4种比较都没有匹配到，就会用`key`进行比较：
+  - 如果没有`key`，则直接将指向新的`vnode`的子节点，插入`真实DOM`
+  - 如果有`key`，旧的`vnode`的子节点会根据`key`生成一个`hash`表，遍历新的vode的子节点，让它`key`与`hash`表进行匹配，匹配成功后会进行相应的更新处理
