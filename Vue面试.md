@@ -69,3 +69,7 @@
 - computed有缓存而watch没有缓存
 - computed必须要有返回值且默认第一次就进行计算，watch可以没有返回值并且默认第一次加载不会做监听，除非加上immediate设置为true
 
+### computed与methods区别
+
+- computed是计算属性依赖于属性，而methods是函数，两者其实不同
+- computed有缓存，多次使用只调用一次，而methods使用n次就会调用n次
