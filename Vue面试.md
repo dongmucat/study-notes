@@ -62,3 +62,10 @@
 - 可维护性高
 - 有利于软件工程化
 
+### computed与watch区别
+
+- computed是计算属性，而watch用于监听属性发生变化
+- computed不支持异步，而watch支持异步
+- computed有缓存而watch没有缓存
+- computed必须要有返回值且默认第一次就进行计算，watch可以没有返回值并且默认第一次加载不会做监听，除非加上immediate设置为true
+
