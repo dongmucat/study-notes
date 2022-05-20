@@ -40,6 +40,24 @@
 - beforeDestroy：组件销毁前调用，此时实例上的数据都还保持正常使用
 - destroyed：组件销毁后调用，此时实例上的东西都不能用了
 
+### Vue3生命周期
+
+> Vue3能兼容vue2的生命周期，但在写composition api的时候钩子的名字会发生一点变化
+
+被替换
+
+- beforeCreate -> setup()
+- created -> setup()
+
+重命名
+
+- beforeMount -> onBeforeMount
+- mounted -> onMounted
+- beforeUpdate -> onBeforeUpdate
+- updated -> onUpdated
+- beforeDestroy -> **onBeforeUnmount**
+- destroyed -> **onUnmounted**
+
 ### v-model原理
 
 实际上`v-model`是一个语法糖，他做了单向绑定数据`v-bind`和触发输入事件`input`
