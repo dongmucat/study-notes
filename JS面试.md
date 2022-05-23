@@ -220,3 +220,20 @@
 - any：接收一个promise数组，如果里面的promise的状态全为rejected，则返回Promise的rejected的回调的err的数组，如果当中有一个的状态为fulfilled，则立即返回promise，且状态更改为fulfilled
 - race：当传入的所有的promise其中有任何一个状态变成fulfilled或者rejected，则执行相应的回调
 
+### Event loop
+
+#### 为什么js是单线程？
+
+javascript作为浏览器的脚本语言，主要的用途就是跟用户交互和操作DOM。假如不是单线程的话，当一个线程给某个DOM添加内容，而另外一个线程在删除这个DOM，那么情况就变得很复杂了，因此javascript应当就是个单线程
+
+#### 同步与异步
+
+javascript实现了处理同步任务和异步任务，当遇到同步任务的时候就会交给主线程直接解决，当遇到异步任务的时候，就会把这些任务暂时放在任务队列里面，而异步任务又分为宏任务和微任务，分别会有对应的两个任务队列。总的来说，执行的时候，同步优先于异步，微任务优先于宏任务
+
+#### 宏任务和微任务
+
+- 宏任务(macro)：script(整体代码)、setTimout、setInterval、I/O、交互事件、UI渲染
+- 微任务(micro)：promise.then、nextTick、await后面的语句（需要等到await有处理结果后，后面的语句才能加入任务队列）
+
+
+
