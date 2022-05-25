@@ -78,7 +78,7 @@
 - 通过构造函数new出来的实例对象会有一个`__proto__`属性，指向它的构造函数的原型对象的`prototype`,而这个`__proto__`属性是由浏览器提供的
 - 原型链在执行查找时是一层一层向上的，原型链的终点是`null`
 - `Object `的原型对象也有`__proto__`属性指向`null`
-- ![](E:\陈松年笔记\JavaScript imgs\原型与原型链.png)
+- ![](./imgs/原型与原型链.png)
 
 ### 箭头函数与普通函数的区别
 
@@ -212,13 +212,17 @@
 
 > Promise是异步编程的一种解决方案，可以解决回调地狱的问题，它有三个状态，分别是pending、fulfilled、rejected，一旦状态改变就不会再变，任何时候都会得到这个结果
 
+#### 流程图
+
+![](./imgs/Promise.png)
+
 #### 常见方法
 
-- resolve：将pending状态变为fulfilled状态，返回一个fulfilled状态的promise对象
-- reject：将pending状态变为rejected状态，返回一个rejected状态的promise对象
-- all：接收一个promise数组，如果里面的promise的状态全为fulfilled，则返回Promise的resolve的回调的value的数组，如果当中有一个的状态为rejected，则立即返回promise，且状态更改为rejected
-- any：接收一个promise数组，如果里面的promise的状态全为rejected，则返回Promise的rejected的回调的err的数组，如果当中有一个的状态为fulfilled，则立即返回promise，且状态更改为fulfilled
-- race：当传入的所有的promise其中有任何一个状态变成fulfilled或者rejected，则执行相应的回调
+- **resolve**：将pending状态变为fulfilled状态，返回一个fulfilled状态的promise对象
+- **reject**：将pending状态变为rejected状态，返回一个rejected状态的promise对象
+- **all**：接收一个promise数组，如果里面的promise的状态全为fulfilled，则返回Promise的resolve的回调的value的数组，如果当中有一个的状态为rejected，则立即返回promise，且状态更改为rejected
+- **any**：接收一个promise数组，如果里面的promise的状态全为rejected，则返回Promise的rejected的回调的err的数组，如果当中有一个的状态为fulfilled，则立即返回promise，且状态更改为fulfilled
+- **race**：当传入的所有的promise其中有任何一个状态变成fulfilled或者rejected，则执行相应的回调
 
 ### Event loop
 
