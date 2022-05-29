@@ -10,3 +10,14 @@
 - 初始化：启动构建，读取并且合并配置参数，然后加载 `Plugin`，实例化 `Compiler`
 - 编译：从 `Entry `入口开始，针对每个`Module `串行调用对应的 `Loader `去翻译文件的内容，再找到该 `Module `依赖的 `Module`，递归地进行编译处理
 - 输出：将编译后的 `Module `组合成 `Chunk`，将 `Chunk `转换成文件，输出到文件系统中
+
+### 常见的Loader有哪些？
+
+- babel-loader：把ES6转换成ES5
+- css-loader：加载CSS
+- style-loader：将CSS代码注入到JS中，通过DOM操作区加载CSS
+- sass-loader：将SCSS/SASS代码转换成CSS
+- less-loader：将less代码转换成CSS
+- url-loader：是用来处理图片、文件等模块信息，而图片会转换成base64编码格式
+- eslint-loader：用于检查JS代码
+- vue-loader：用于加载vue组件
