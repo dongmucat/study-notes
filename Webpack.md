@@ -21,3 +21,10 @@
 - url-loader：是用来处理图片、文件等模块信息，而图片会转换成base64编码格式
 - eslint-loader：用于检查JS代码
 - vue-loader：用于加载vue组件
+
+### 常见的Plugin有哪些？
+
+- html-webpack-plugin：简化HTML文件创建
+- webpack-bundle-analyzer：可视化Webpack的输出
+- clean-webpack-plugin：可以用于构建前清理dist文件夹
+- ignore-plugin：忽略部分文件
