@@ -253,3 +253,28 @@
 
 该属性可能取6个值，除了`auto`，其他都与`align-items`属性完全一致
 
+## position布局
+
+### static
+
+`static`是默认值，就是没有定位，元素处于正常的文档流
+
+### relative
+
+`relative `是相对定位，元素不会脱离文档流，元素会相对于原本自己的位置进行移动
+
+### absolute
+
+`absolute `是绝对定位，元素会脱离文档流。它会相对于最近设置有定位的父元素进行移动；如果没有，则会相对于`body`元素进行移动定位
+
+### fixed
+
+`fixed `是一种特殊的绝对定位，也会脱离文档流，只不过 `fixed `的元素是固定相对与 `body `来定位的
+
+### inherit
+
+`inherit`用于继承父元素的`position`的值
+
+### sticky
+
+`sticky`是粘性定位，可以说是相对定位`relative `和固定定位`fixed `的结合体，元素在跨越特定值之前被认为是相对定位，之后可以认为是固定定位，而且必须指定top、bottom、left、right4个值之一，否则只会处于相对定位
