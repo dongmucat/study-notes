@@ -28,3 +28,34 @@
 - webpack-bundle-analyzer：可视化Webpack的输出
 - clean-webpack-plugin：可以用于构建前清理dist文件夹
 - ignore-plugin：忽略部分文件
+
+### 自定义Loader
+
+编写`Loader`一般要遵循单一原则，每个`Loader`只做一种转义工作。每个`Loader`函数可以拿到源文件内容`source`，其中`this.query`能拿到`webpack.config.js`中的`options`，我们可以调用`this.callback()`方法返回处理结果，如果是想要异步操作就可以用`this.async()`
+
+```javascript
+// webpack.config.js module 代码片段
+{
+        test: /\.js/,
+        use: [
+            {
+                loader: 'replaceLoader',
+                options: {
+                    name: "jack",
+                },
+            },
+        ],
+},
+// 自定义 loader 代码片段
+module.exports = function(source) {
+	// 获取options
+    const options = this.query;
+    //调用this.async()这个API，来给异步代码使用
+    const callback = this.async();
+    setTimeout(() => {
+        const result = source.replace('monday', options.name);
+        callback(null, result);
+    }, 5000);
+}
+```
+
