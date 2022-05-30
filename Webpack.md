@@ -59,3 +59,12 @@ module.exports = function(source) {
 }
 ```
 
+### 自定义Plugin
+
+对于自定义`Plugin`，主要的关键就是监听`Webpack`编译阶段中的事件，然后在这些生命周期钩子函数中去做需要去做的事情，在自己写的`Plugin`中的`apply`方法能接收到`compiler`实例，其中有`tap`和`call`，可以简单理解为`监听`和`触发`
+
+```javascript
+compiler.hooks.钩子函数.tap() // 监听
+compiler.hooks.钩子函数.call() //触发
+```
+
