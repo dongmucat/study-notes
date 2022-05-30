@@ -173,3 +173,22 @@ index不是唯一标识，因此会导致DOM渲染速度降低，而且会出现
 ##### EventBus
 
 `EventBus`是中央事件总线，`Vue`官方也有说使用一个`Vue`实例来作为中央事件总线，也是依靠`$emit`和`$on`之类的
+
+### Vuex
+
+> Vuex是一个状态管理库，可以管理多个组件依赖的状态
+
+![](./imgs/vuex.png)
+
+#### 基本参数
+
+- store：实际上就是管理数据的仓库
+- state：用于存放数据
+- actions：可以实现异步操作，用于提交到mutation
+- mutations：用于更改数据，不支持异步操作
+- getter：相当于computed，是由state派生出的状态
+
+#### 基本使用流程
+
+- 在vue组件中通过dispatch提交到actions，然后在actions通过commit提交到mutations，mutations最后进行数据的更改，然后依赖组件再进行渲染
+- 可以使用mapActions、mapState、mapMutations工具开发更舒服
