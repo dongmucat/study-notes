@@ -192,3 +192,32 @@ index不是唯一标识，因此会导致DOM渲染速度降低，而且会出现
 
 - 在vue组件中通过dispatch提交到actions，然后在actions通过commit提交到mutations，mutations最后进行数据的更改，然后依赖组件再进行渲染
 - 可以使用mapActions、mapState、mapMutations工具开发更舒服
+
+### Vue-Router
+
+> Vue-Router的最大作用就是跳转到相应的组件
+
+#### 懒加载实现
+
+- 使用箭头函数+import动态加载
+
+#### hash模式
+
+**特点**：hash模式的时候URL会有一个**#**符号，hash就是在这个符号后面，hash值会出现在URL里，但是不会出现在HTTP请求中。改变hash值不会重新加载页面
+
+**原理**：原理就是利用了`window.onhashchange`事件，通过这个事件来监听URL的变化，利用`location.hash`获取到hash值，然后再来处理相关的逻辑操作
+
+#### history模式
+
+**特点**：history模式的时候没有**#**，它是传统的模式，也就是说我们输入URL的时候，服务器会接收这个URL，然后要解析才能做出相应的逻辑处理。history模式需要后台配置支持。如果后台没有正确配置，访问时会返回404
+
+**原理**：history利用了`pushState()`和`replaceState()`两个方法，**这两个方法改变 URL 的 path 部分不会引起页面刷新**
+
+#### api跳转区别
+
+| api     | hash                    | history                     |
+| ------- | ----------------------- | --------------------------- |
+| **push** | **window.location.assign** | **window.history.pushState** |
+| **replace** | **window.location.replace** | **window.history.replaceState** |
+| go、back、forward | window.history.go |window.history.go|
+
