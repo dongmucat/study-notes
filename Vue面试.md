@@ -101,6 +101,11 @@
 - 可维护性高
 - 有利于软件工程化
 
+### Vue为什么没有完全遵守MVVM?
+
+- MVVM模型中的Model层和View层应该是解耦的，但是有ref这个属性可以拿到DOM，这一点打破了这个原则
+- Vue中的VM中包含着Model数据层，在我看来，这两部分没有独立出来
+
 ### computed与watch区别
 
 - computed是计算属性，而watch用于监听属性发生变化
