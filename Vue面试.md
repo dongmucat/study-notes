@@ -221,3 +221,9 @@ index不是唯一标识，因此会导致DOM渲染速度降低，而且会出现
 | **replace** | **window.location.replace** | **window.history.replaceState** |
 | go、back、forward | window.history.go |window.history.go|
 
+#### 路由守卫
+
+- 全局守卫/钩子：beforeEach、beforeResolve、afterEach
+- 路由独享的守卫：beforeEnter
+- 组件内的守卫：beforeRouteEnter、beforeRouteUpdate、beforeRouteLeave
+
