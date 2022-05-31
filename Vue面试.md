@@ -227,3 +227,9 @@ index不是唯一标识，因此会导致DOM渲染速度降低，而且会出现
 - 路由独享的守卫：beforeEnter
 - 组件内的守卫：beforeRouteEnter、beforeRouteUpdate、beforeRouteLeave
 
+#### Vue-Router中的组件
+
+- <router-link>：用于跳转到目标地址，还可以携带参数，实际上是通过<a>标签实现的
+- <router-view>：用于渲染路由要跳转的页面
+- <keep-alive>：用于缓存需要缓存的组件，比如可以切出去再切回来的时候数据还在
+
