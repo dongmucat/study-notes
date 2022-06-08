@@ -68,3 +68,9 @@ compiler.hooks.钩子函数.tap() // 监听
 compiler.hooks.钩子函数.call() //触发
 ```
 
+### source-map
+
+- `source-map`是从`已转换的代码`映射到`原始的源文件`，如果浏览器支持的话，调试的时候能自动地将错误映射到源文件
+- 代码中引入 `//# sourceMappingURL=xxx.js.map`启用
+- `js`和`css`都可以有
+
