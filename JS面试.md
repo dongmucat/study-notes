@@ -327,5 +327,54 @@ javascript实现了处理同步任务和异步任务，当遇到同步任务的�
 - 宏任务(macro)：script(整体代码)、setTimout、setInterval、I/O、交互事件、UI渲染
 - 微任务(micro)：promise.then、nextTick、await后面的语句（需要等到await有处理结果后，后面的语句才能加入任务队列）
 
+### Proxy与Reflect
 
+#### Proxy
+
+`Proxy`代理就是通过`Proxy`拦截对一个对象的基本操作，对于一些复合的操作，`Proxy `是拦截不到的
+
+```javascript
+const data = {}
+const p = new Proxy(data, {
+    //拦截属性取值操作
+    get(target, key,receiver){
+        // ...
+        return target[key];
+    },
+    //拦截属性设置操作
+    set(target, key, value){
+        //...
+        target[key] = value;
+        retrun target[key];
+    }
+});
+```
+
+其中`get`中的`receiver`可以理解为上下文中的`this`
+
+#### Reflect
+
+`Reflect`是一个全局内置的对象，它提供拦截`JavaScript`操作的方法。但是，`Reflect`本身不是个函数对象，因此其不是一个构造函数，不能使用new进行调用。`Reflect`的所有属性和方法都是静态的
+
+```javascript
+Reflect.get(target, key,receiver)//在一个对象上读取值
+Reflect.set(target, key,value)//在一个对象上设置属性
+```
+
+```javascript
+const p = new Proxy(data, {
+  get(target, property, receiver) {
+    // obj继承data，想要返回obj自身的属性值就执行下面这句
+    return Reflect.get(target, property, receiver);
+    //  等价于 return target[property].call(receiver);
+    // 想返回data中的属性值就执行下面这句
+    // return Reflect.get(target, property);
+    // 等价于return target[property];
+  }
+});
+```
+
+#### 总结
+
+在`Vue3`中使用`Proxy`来实现响应式数据，具体就是通过`Proxy`拦截和修改对象的基本操作。在代理过程中，会出现`get`中的`this`指向问题，这个时候就需要使用`Reflect`的方法第三个参数`receiver`来解决，相当于用`call`改变了`this`指向。
 
