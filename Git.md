@@ -60,3 +60,17 @@ git commit -m 'xxxxx'
 - feature分支：用于开发功能的分支，必须从最新的develop分支代码拉取。分支命名基本上是feature/xxxxx（和功能相关的名字如feature/login）
 - release分支：主要用于给测试人员进行测试，
 - hotfix分支：用于线上紧急修复的分支，比如，在线上v1.0登录功能出现问题，我从master拉取代码创建新的分支hotfix/v1.0_login，修改完成后合并到master和develop上
+
+### 时光倒流
+
+#### git reset --soft HEAD^
+
+回退到上个版本，并且还会保存着对于文件的修改
+
+#### git reset --hard HEAD^
+
+强制回退上个版本
+
+#### git reset --hard [commit id/hash]
+
+回退到指定的版本，一般先要用`git log`查看版本的`id`
