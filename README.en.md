@@ -1,3 +1,0 @@
-# study-notes
-
-#### Description
