@@ -23,3 +23,22 @@ git checkout feature
 git stash apply
 ```
 
+### 代码提交后发现是在错误的分支上怎么办？
+
+- 在刚刚提交的分支上使用
+
+```
+# 使用soft可以保留上次add的内容
+ git reset --soft HEAD^
+```
+
+- 利用`stash`
+
+```
+git stash
+git checkout target(目标分支)
+git stash pop
+git add .
+git commit -m 'xxxxx'
+```
+
