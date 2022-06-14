@@ -74,3 +74,13 @@ git commit -m 'xxxxx'
 #### git reset --hard [commit id/hash]
 
 回退到指定的版本，一般先要用`git log`查看版本的`id`
+
+### 删除远程仓库的某个文件
+
+```
+// 最好先git pull
+git rm -r --cached [filename] //带-r表示删除文件夹，不带表示删除文件
+git commit -m 'xxxxxx'
+git push 
+```
+
