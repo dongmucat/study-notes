@@ -42,3 +42,21 @@ git add .
 git commit -m 'xxxxx'
 ```
 
+### GitFlow
+
+#### 流程图
+
+![](./imgs/gitFlow.png)
+
+#### 说明
+
+**重要的分支**
+
+- master分支：线上代码，只有确定可以上线了才可以合并到此处
+- develop分支：
+
+**辅助分支**
+
+- feature分支：用于开发功能的分支，必须从最新的develop分支代码拉取。分支命名基本上是feature/xxxxx（和功能相关的名字如feature/login）
+- release分支：主要用于给测试人员进行测试，
+- hotfix分支：用于线上紧急修复的分支，比如，在线上v1.0登录功能出现问题，我从master拉取代码创建新的分支hotfix/v1.0_login，修改完成后合并到master和develop上
