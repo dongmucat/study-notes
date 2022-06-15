@@ -8,7 +8,7 @@
 
 #### 原理图
 
-![](./imgs/Vue双向数据绑定原理.png)
+![](http://songnian.gitee.io/imgs/imgs/Vue双向数据绑定原理.png)
 
 #### 初始化阶段
 
@@ -70,7 +70,7 @@
 
 #### 原理图
 
-![](./imgs/MVVM.png)
+![](http://songnian.gitee.io/imgs/imgs/MVVM.png)
 
 #### 含义
 
@@ -89,7 +89,7 @@
 
 #### 原理图
 
-![](./imgs/MVC.png)
+![](http://songnian.gitee.io/imgs/imgs/MVC.png)
 
 #### 含义
 
@@ -187,7 +187,7 @@ index不是唯一标识，因此会导致DOM渲染速度降低，而且会出现
 
 > Vuex是一个状态管理库，可以管理多个组件依赖的状态
 
-![](./imgs/vuex.png)
+![](http://songnian.gitee.io/imgs/imgs/vuex.png)
 
 #### 基本参数
 

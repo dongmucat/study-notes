@@ -46,7 +46,7 @@ git commit -m 'xxxxx'
 
 #### 流程图
 
-![](./imgs/gitFlow.png)
+![](http://songnian.gitee.io/imgs/imgs/gitFlow.png)
 
 #### 说明
 

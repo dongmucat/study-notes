@@ -95,7 +95,7 @@
 - 通过构造函数new出来的实例对象会有一个`__proto__`属性，指向它的构造函数的原型对象的`prototype`,而这个`__proto__`属性是由浏览器提供的
 - 原型链在执行查找时是一层一层向上的，原型链的终点是`null`
 - `Object `的原型对象也有`__proto__`属性指向`null`
-- ![](./imgs/原型与原型链.png)
+- ![](http://songnian.gitee.io/imgs/imgs/原型与原型链.png)
 
 ### 箭头函数与普通函数的区别
 
@@ -285,7 +285,7 @@ b = null 	 	// 此对象的引用计数为 0（无引用）
 
 > 新生代中用 **Scavenge** 算法来处理，也就是把新生代空间对半划分为两个区域，**一半是对象区域**，**一半是空闲区域**，一般来说，新加入的对象都会存放到对象区域
 
-![](./imgs/V8新生代Scavenge.png)
+![](http://songnian.gitee.io/imgs/imgs/V8新生代Scavenge.png))
 
 ##### 回收过程
 
@@ -312,7 +312,7 @@ b = null 	 	// 此对象的引用计数为 0（无引用）
 
 #### 流程图
 
-![](./imgs/Promise.png)
+![](http://songnian.gitee.io/imgs/imgs/Promise.png)
 
 #### 常见方法
 

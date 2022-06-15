@@ -23,7 +23,7 @@
 
 > 谁用到了数据，谁就是依赖，我们就为谁创建一个watcher实例，在之后数据变化时，我们不直接去通知依赖更新，而是通知依赖对应的`Watch`实例，由`Watcher`实例去通知真正的视图
 
-![](./imgs/watcher类工作流程.jpg)
+![](http://songnian.gitee.io/imgs/imgs/watcher类工作流程.jpg)
 
 ##### 读流程
 
@@ -46,7 +46,7 @@
 
 > 在`Vue`中创建了一个数组方法拦截器，它拦截在数组实例与`Array.prototype`之间，在拦截器内重写了操作数组的一些方法，比如可以通知变化等
 
-![](./imgs/拦截器.png)
+![](http://songnian.gitee.io/imgs/imgs/拦截器.png)
 
 ##### 通知依赖
 
@@ -180,7 +180,7 @@ export default class VNode {
 
 > 创建节点是新的`VNode`有而旧的`VNode`没有。`VNode`类可以描述6种类型的节点，而实际上只有3种类型的节点能够被创建并插入到`DOM`中，它们分别是：元素节点、文本节点、注释节点
 
-![](E:\陈松年笔记\study-notes\imgs\Patch创建节点.png)
+![](http://songnian.gitee.io/imgs/imgs/Patch创建节点.png)
 
 ##### 删除节点
 
@@ -190,7 +190,7 @@ export default class VNode {
 
 > 更新节点就是当某些节点在新的`VNode`和旧的`VNode`中都有时，我们就需要细致比较一下，找出不一样的地方进行更新
 
-![](E:\陈松年笔记\study-notes\imgs\Patch更新节点.png)
+![](http://songnian.gitee.io/imgs/imgs/Patch更新节点.png)
 
 ##### 总结
 

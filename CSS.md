@@ -121,7 +121,7 @@
 
 > 采用Flex布局的元素，称为Flex容器（flex container），简称”容器”。它的所有子元素自动成为容器成员，称为Flex项目（flex item），简称”项目”
 
-![](./imgs/flex坐标轴.png)
+![](http://songnian.gitee.io/imgs/imgs/flex坐标轴.png)
 
 容器默认存在两根轴，一根是横轴主轴`main axis`，一根是纵轴交叉轴`cross axis`
 
@@ -137,7 +137,7 @@
 }
 ```
 
-![](E:\陈松年笔记\study-notes\imgs\flex-direction.png)
+![](http://songnian.gitee.io/imgs/imgs/flex-direction.png)
 
 - row（默认值）：主轴为水平方向，起点在左端
 - row-reverse：主轴为水平方向，起点在右端
@@ -176,7 +176,7 @@
 }
 ```
 
-![](./imgs/justify-content.png)
+![](http://songnian.gitee.io/imgs/imgs/justify-content.png)
 
 - flex-start（默认值）：左对齐
 - flex-end：右对齐
@@ -194,7 +194,7 @@
 }
 ```
 
-![](./imgs/align-items.png)
+![](http://songnian.gitee.io/imgs/imgs/align-items.png)
 
 - flex-start：交叉轴的起点对齐
 - flex-end：交叉轴的终点对齐
@@ -212,7 +212,7 @@
 }
 ```
 
-![](./imgs/align-content.png)
+![](http://songnian.gitee.io/imgs/imgs/align-content.png)
 
 - flex-start：与交叉轴的起点对齐
 - flex-end：与交叉轴的终点对齐
@@ -231,7 +231,7 @@
 
 > flex-grow属性定义项目的放大比例，默认为0，即如果存在剩余空间，也不放大。
 
-![](./imgs/flex-grow.png)
+![](http://songnian.gitee.io/imgs/imgs/flex-grow.png)
 
 如果所有项目的flex-grow属性都为1，则它们将等分剩余空间（如果有的话）。如果一个项目的flex-grow属性为2，其他项目都为1，则前者占据的剩余空间将比其他项多一倍。
 
@@ -239,7 +239,7 @@
 
 > flex-shrink属性定义了项目的缩小比例，默认为1，即如果空间不足，该项目将缩小
 
-![](./imgs/flex-shrink.jpg)
+![](http://songnian.gitee.io/imgs/imgs/flex-shrink.jpg)
 
 如果所有项目的flex-shrink属性都为1，当空间不足时，都将等比例缩小。如果一个项目的flex-shrink属性为0，其他项目都为1，则空间不足时，前者不缩小。负值对该属性无效。
 
@@ -267,7 +267,7 @@
 }
 ```
 
-![](./imgs/align-self.png)
+![](http://songnian.gitee.io/imgs/imgs/align-self.png)
 
 该属性可能取6个值，除了`auto`，其他都与`align-items`属性完全一致
 
