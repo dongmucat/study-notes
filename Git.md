@@ -84,3 +84,11 @@ git commit -m 'xxxxxx'
 git push 
 ```
 
+### git commit 错误的信息，怎么办？
+
+当使用`git commit -m 'xxx'`时候，`xxx`输入错误、还没`push`的时候，可以使用
+
+```
+git commit --amend --only -m 'xxxxxxx'
+```
+
