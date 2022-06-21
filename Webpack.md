@@ -74,3 +74,9 @@ compiler.hooks.钩子函数.call() //触发
 - 代码中引入 `//# sourceMappingURL=xxx.js.map`启用
 - `js`和`css`都可以有
 
+### 文件指纹
+
+- Hash：和整个项目的构建相关，只要项目文件有修改，整个项目构建的`Hash `值就会更改，这一点其实不是很好，因为一旦一个文件发生了变化，所有的文件名字都会发生变化，起不到缓存的效果
+- chunkHash：和`webpack`构建相应的`chunk`有关，不同的`entry`会生成不同的`chunkHash`值
+- ContentHash：根据文件内容来定义`Hash`，文件内容不变，则`contentHash `不变
+
