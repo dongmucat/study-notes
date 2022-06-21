@@ -80,3 +80,33 @@ compiler.hooks.钩子函数.call() //触发
 - chunkHash：和`webpack`构建相应的`chunk`有关，不同的`entry`会生成不同的`chunkHash`值
 - ContentHash：根据文件内容来定义`Hash`，文件内容不变，则`contentHash `不变
 
+### Tree Shaking
+
+> **Tree Shaking 只支持 ES Module的引入方式，不支持 Common JS 的引入方式**
+
+#### 定义
+
+用于移除`js`中的未引用代码，比如引用了其他模块的代码，但是没有使用，`Tree Shaking`可以将它移除掉。
+
+#### 原理
+
+`usedExports` 用于在`Webpack `编译过程中启动标记功能，它会将每个模块中没有被使用过的导出内容标记为 `unused`，当生成产物时，被标记的变量对应的导出语句会被删除
+
+#### 如何使用
+
+- 生产环境：默认使用`Tree shaking`
+
+- 开发环境：
+
+  ```javascript
+  module.exports = {
+    mode: 'development',
+      // 重要
+    optimization: {
+      usedExports: true,
+    }
+  };
+  ```
+
+  
+
