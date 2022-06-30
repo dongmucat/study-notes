@@ -322,6 +322,28 @@ b = null 	 	// 此对象的引用计数为 0（无引用）
 - **any**：接收一个promise数组，如果里面的promise的状态全为rejected，则返回Promise的rejected的回调的err的数组，如果当中有一个的状态为fulfilled，则立即返回promise，且状态更改为fulfilled
 - **race**：当传入的所有的promise其中有任何一个状态变成fulfilled或者rejected，则执行相应的回调
 
+#### 一些特性
+
+##### 值穿透
+
+> 值穿透指的是，链式调用的参数不是函数时，会发生值穿透，就传入的非函数值忽略，传入的是之前的函数参数
+
+```javascript
+// 正常
+Promise.resolve(1)
+    .then(() => { return 2 })
+    .then(() => { return 3 })
+    .then(console.log)
+	//输出 3
+
+// 值穿透
+Promise.resolve(1)
+    .then(2)
+    .then(Promise.resolve(3))
+    .then(console.log)
+    // 输出 1
+```
+
 ### Event loop
 
 #### 为什么js是单线程？
