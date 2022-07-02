@@ -285,7 +285,7 @@ b = null 	 	// 此对象的引用计数为 0（无引用）
 
 > 新生代中用 **Scavenge** 算法来处理，也就是把新生代空间对半划分为两个区域，**一半是对象区域**，**一半是空闲区域**，一般来说，新加入的对象都会存放到对象区域
 
-![](http://songnian.gitee.io/imgs/imgs/V8新生代Scavenge.png))
+![](http://songnian.gitee.io/imgs/imgs/V8新生代Scavenge.png)
 
 ##### 回收过程
 
