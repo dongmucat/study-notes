@@ -1,5 +1,12 @@
 ## Git
 
+### 设置用户名和邮箱
+
+```
+git config --global user.email <useremail>   //邮箱
+git config --global user.name <username> //密码
+```
+
 ### git merge 与 git rebase 的区别
 
 - merge是合并操作，是将两个分支进行合并，并会在目标分支上产生额外的提交记录（合并记录），关注点在于提交的历史
