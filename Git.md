@@ -12,9 +12,16 @@ git config --global user.name <username> //密码
 - merge是合并操作，是将两个分支进行合并，并会在目标分支上产生额外的提交记录（合并记录），关注点在于提交的历史
 - rebase实际上不是合并操作，它只是复制了当前分支的修改，然后粘贴在目标分支的最新提交的后面，这样的话历史提交记录就会很明朗，关注点在开发干了什么
 
+### git fetch和git pull区别
+
+- `git fetch`只是拉取到本地
+- `git pull `不仅拉取到本地还`merge`到本地分支中，所以是`git pull`是`git fetch`和`git merge`的集合体
+
+- `git pull`如果合并需要采用`rebase`模式，可以使用`–rebase`选项。即`git pull --rebase <远程主机名> <远程分支名>:<本地分支名>`
+
 ### git stash
 
-**应用场景：**某一天你正在 feature 分支开发新需求，突然产品经理跑过来说线上有bug，必须马上修复。而此时你的功能开发到一半，于是你急忙想切到 master 分支，然后你就会看到报错
+**应用场景**：某一天你正在 feature 分支开发新需求，突然产品经理跑过来说线上有bug，必须马上修复。而此时你的功能开发到一半，于是你急忙想切到 master 分支，然后你就会看到报错
 
 **解决方法：**
 
@@ -26,8 +33,11 @@ git checkout master
 
 ```
 //恢复代码
-git checkout feature 
+git checkout feature
+// apply会将其保留在存储列表中
 git stash apply
+// pop会将最顶部的弹出
+git stash pop
 ```
 
 ### 代码提交后发现是在错误的分支上怎么办？
