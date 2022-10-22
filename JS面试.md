@@ -447,3 +447,10 @@ const p = new Proxy(data, {
 
 **优点**：节约内存，减少监听，能为之后新增的DOM元素依然添加事件
 
+### XHR和Fecth的区别
+
+- `XHR`可以监控进度和中断请求，而`Fetch`请求不可以
+- `Fetch`只对网络错误或者跨域报错，对于`http`状态码错误不报错
+- `Fetch`不支持超时控制，不支持`abort`
+- 默认情况下`Fetch`不发送`cookie`，除非手动配置`credentials `属性
+- `Fetch`的语法更简洁，更语义化，并且基于`Promise`
