@@ -1,4 +1,4 @@
-## ES6相关
+## JavaScript
 
 ### var let const 区别
 
@@ -147,7 +147,7 @@
 - 执行上下文栈初始化的时候，会最先压入一个`全局执行上下文`，并且只有当整个程序执行结束后，执行上下文栈才会被清空
 - 每当执行一个函数的时候，就会创建一个`执行上下文`并且压入执行上下文栈中，当函数执行完毕的时候就会将它弹出
 
-### 执行上下文
+### ES3规范执行上下文
 
 #### 类型
 
@@ -161,34 +161,34 @@
 - 作用域链(Scope chain)
 - this
 
-### 变量对象
+#### 变量对象
 
-#### 函数的所有形参 (如果是函数上下文)
+##### 函数的所有形参 (如果是函数上下文)
 
 - 由名称和对应值组成的一个变量对象的属性被创建
 - 没有实参，属性值设为 undefined
 
-#### 函数声明
+##### 函数声明
 
 - 由名称和对应值（函数对象(function-object)）组成一个变量对象的属性被创建
 - 如果变量对象已经存在相同名称的属性，则完全替换这个属性
 
-#### 变量声明
+##### 变量声明
 
 - 由名称和对应值（undefined）组成一个变量对象的属性被创建；
 - 如果变量名称跟已经声明的形式参数或函数相同，则变量声明不会干扰已经存在的这类属性
 
-### 作用域链
+#### 作用域链
 
-#### 含义
+##### 含义
 
 查找变量的时候，会先从当前上下文的变量对象中查找，如果没有找到，就会从父级执行上下文的变量对象中查找，一直找到全局上下文的变量对象，也就是全局对象。这样由多个执行上下文的变量对象构成的链表就叫做作用域链。
 
-#### 原因
+##### 原因
 
 这是因为函数有一个内部属性 [[scope]]，当函数创建的时候，就会保存所有父变量对象到其中，你可以理解 [[scope]] 就是所有父变量对象的层级链，但是注意：[[scope]] 并不代表完整的作用域链！
 
-### this规范深入
+#### this规范深入
 
 > **1.Let *ref* be the result of evaluating MemberExpression.**
 >
@@ -211,6 +211,54 @@
 > ```
 
 **MemberExpression**简单理解可以为()左边的部分
+
+### ES6规范执行上下文
+
+#### 类型
+
+- 全局执行上下文
+- 函数执行上下文
+- eval执行上下文
+
+#### 两个环境
+
+- 词法环境`LexicalEnvironment`
+- 变量环境`VariableEnvironment`
+
+#### 词法环境LexicalEnvironment
+
+词法环境是`ECMA`中的一个规范，简单来说，词法环境就是建立了标识符---->变量引用地址的映射表，`LexicalEnvironment`只存储函数声明和`let/const`声明的变量
+
+##### 词法环境LexicalEnvironment的类型
+
+- 全局环境(`GlobalEnvironment`)：在`JS`运行开始的时候，浏览器就会创建全局执行上下文的时候就会有这个全局环境
+- 函数环境(`FunctionEnvironment`)：每一次调用函数时都会产生函数环境，在`ER`中也会记录该函数的`length`和`arguments`属性，而且函数环境的`outer`引用会指向调用起该函数的父环境
+- 模块环境(`ModuleEnvironment`)：模块环境中可以读取到例如`module`、`export`变量。模块环境的`outer`引用指向全局环境
+
+##### 词法环境LexicalEnvironment两个部分的构成
+
+- 环境记录`EnvironmentRecord`：存放变量和函数声明的地方，其中`this`也在这里
+- 外层引用`outer`：提供了访问父级词法环境的引用，可能为`null`
+
+##### 环境记录EnvironmentRecord
+
+###### 两种类型
+
+- declarative EnvironmentRecord（一般来说都是declarative）
+- object EnvironmentRecord（一般来说由with语句触发，特殊地，全局ER类型为declarative和object混合，但是视作为object）
+
+##### 小结
+
+```
+词法环境 = EnvironmentRecord + outer
+词法环境分类 = 全局 or 函数 or 模块
+EnvironmentRecord分类 = declarative or object
+GlobalEnvironmentRecord = declarative + object
+```
+
+#### 变量环境VariableEnvironment
+
+在`ES6`中提倡使用`let/const`去声明变量，但是为了兼顾`ES3`中的`var`的写法以及让他们做一个区分，于是使用变量环境去存储使用`var`声明的变量。变量环境大体上是和词法环境差不多的。只不过用`var`声明的变量一开始的值为`undefined`，并且存在变量提升
 
 ### 闭包
 
