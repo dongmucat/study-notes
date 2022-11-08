@@ -442,26 +442,35 @@ javascript实现了处理同步任务和异步任务，当遇到同步任务的�
 
 #### Proxy
 
-`Proxy`代理就是通过`Proxy`拦截对一个对象的基本操作，对于一些复合的操作，`Proxy `是拦截不到的
+`Proxy`代理就是通过`Proxy`拦截对一个对象的基本操作，对于一些复合的操作，`Proxy `是拦截不到的，因为它不是深度监测，比如`p.a.b`触发的是`key`为`a`的`get`函数
 
 ```javascript
-const data = {}
+const data = {
+	name: "jack",
+};
 const p = new Proxy(data, {
-    //拦截属性取值操作
-    get(target, key,receiver){
-        // ...
-        return target[key];
-    },
-    //拦截属性设置操作
-    set(target, key, value){
-        //...
-        target[key] = value;
-        retrun target[key];
-    }
+	//拦截属性取值操作
+	get(target, key, receiver) {
+		// ...
+		console.log("receiver === p ? ", receiver === p); // false
+		console.log("receiver === obj ? ", receiver === obj); // true
+		console.log("this === obj ? ", this === obj); // false
+		return target[key];
+	},
+	//拦截属性设置操作
+	set(target, key, value) {
+		//...
+		target[key] = value;
+		return target[key];
+	},
 });
+const obj = {};
+// 设置obj继承与parent的代理对象p
+Object.setPrototypeOf(obj, p);
+console.log(obj.name); // jack
 ```
 
-其中`get`中的`receiver`可以理解为上下文中的`this`
+其中`get`陷阱中的`receiver `存在的意义就是为了正确的在陷阱中传递上下文，请注意这里的`this`指向的是`handler`对象
 
 #### Reflect
 
