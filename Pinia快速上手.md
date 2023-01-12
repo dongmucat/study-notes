@@ -32,6 +32,7 @@ pnpm add pinia
 如果您使用的是`Vue3`可以创建一个`pinia`并将其传递给应用程序：
 
 ```ts
+// src/main.ts
 import { createPinia } from 'pinia'
 const pinia = createPinia()
 app.use(pinia)
@@ -259,7 +260,9 @@ const counter = useCounterStore();
 counter.$reset()
 ```
 
-## 其他模式
+## 一点点进阶
+
+### Compositon Api模式
 
 > Compositon Api模式
 
@@ -348,7 +351,109 @@ export const useCounterStore = defineStore('counter', () => {
 
 到底用哪一种呢？其实我也说不好，具体情况看团队如何规定吧。
 
-## 最后
+### 本地数据持久化
 
-本篇文章主要用于快速学习`Pinia`，做了一份简单的总结，更多的玩法还要查阅更多的资料。
+> 使用[pinia-plugin-persist](https://seb-l.github.io/pinia-plugin-persist/)存储到`sessionStorage`和`localStorage`，只支持`Option Api`模式:sob:
+
+有些时候我们还需要将数据存储到本地，一般情况下可以直接存储，这里就不过多说明。这里会提供[pinia-plugin-persist](https://seb-l.github.io/pinia-plugin-persist/)插件实现本地数据持久化:yum:
+
+#### 安装
+
+```bash
+# npm
+npm i pinia-plugin-persist
+# yarn
+yarn add pinia-plugin-persist
+# pnpm
+pnpm add pinia-plugin-persist
+```
+
+#### 使用
+
+##### pinia使用插件
+
+```ts
+// src/main.ts
+import { createPinia } from 'pinia'
+import piniaPluginPersist from 'pinia-plugin-persist'
+
+const pinia = createPinia()
+
+pinia.use(piniaPluginPersist)
+
+// ....
+```
+
+##### 给tsconfig增加type字段
+
+> 如果使用的是`js`可以跳过这一步
+
+```ts
+{
+  "compilerOptions": {
+    "types": [
+      "pinia-plugin-persist"
+    ]
+  },
+}
+```
+
+##### 存储到sessionStorage
+
+```ts
+// src/stores/userInfo.ts
+
+import { defineStore } from 'pinia'
+export const useUserInfoStore = defineStore('userInfo', {
+  // 定义state
+  state: () => {
+    return {
+      name: 'songnian',
+      age: 19,
+      token: 'abcdefg',
+    }
+  },
+  getters: {},
+  actions: {},
+  // persist就是插件的设置,默认情况下存储到`sessionStorage`，并且`key`值为`storeID`
+  persist: {
+    enabled: true,
+  },
+})
+```
+
+##### 存储到localStorage
+
+```ts
+  persist: {
+    enabled: true,
+     strategies: [
+         // key可以自定义，没有paths属性的时候就默认选择全部状态
+  		{ key: 'allInfo', storage: localStorage},
+	],
+  },
+```
+
+##### 自定义存储
+
+当然我们也可以自定义存储，在`strategies`配置项修改即可。比如我需要把`key`为`myInfo`，值为`name`和`age`存储到`sessionStorage`；需要把`key`为`myToken`，值为`token`存储到`localStorage`。我们可以有如下代码：
+
+```ts
+  // 自定义存储
+  persist: {
+    enabled: true,
+    strategies: [
+        // paths属性存放需要持久化的状态的`key`值
+  		{ key: 'myInfo', storage: sessionStorage, paths: ['name', 'age'] },
+  		{ key: 'myToken', storage: localStorage, paths: ['token'] },
+	],
+  },
+
+```
+
+**tips: `state`初始化的时候并不会存储到相应的位置，当`state`状态变更的时候，才会存储到对应的位置**
+
+## 结语
+
+本篇文章主要用于快速学习`Pinia`，做了一份简单的总结，更多的玩法还要查阅更多的资料
 
